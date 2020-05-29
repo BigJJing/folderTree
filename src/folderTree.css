@@ -1,0 +1,149 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.folder-tree{
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px   ;
+}
+.folder-tree .iconfont{
+    color: #ccc;
+}
+.folder-tree .folder-tree-none{
+    display: none;
+}
+.folder-tree .folder-tree-main{
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    width: 100%;
+    padding: 2px 0;
+}
+.folder-tree .folder-tree-main:hover .tree-title{
+    text-decoration: underline;
+}
+.folder-tree .folder-tree-main .folder-tree-edit-input{
+    border: none;
+    background: #f2f2f2;
+    padding: 0 5px;
+    height: 20;
+}
+.folder-tree .folder-tree-main:hover .folder-tree-btn-group{
+    visibility: visible;
+}
+
+/* 伸缩按钮 */
+.folder-tree .tree-icon-click{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+    margin: auto 10px;
+    vertical-align:middle
+
+}
+.folder-tree .folder-tree-stretch-not{
+    padding-left: 34px;
+}
+.folder-tree .tree-icon-click i{
+    font-size: 10px;
+}
+/* 复选框 */
+
+.folder-tree .tree-form-checkbox{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #d2d2d2;
+    border-radius: 2px;
+    vertical-align:middle;
+    text-align: center;
+    line-height: 18px;
+    margin-right: 5px;
+}
+.tree-form-checkbox-checked{
+    border-color: #5FB878 !important;
+    background-color: #5FB878 !important;
+}
+.folder-tree .tree-form-checkbox i{
+    font-size: 14px;
+    color: #fff;
+}
+/* 文件夹名 */
+.folder-tree .tree-title{
+    vertical-align: middle;
+    color: #555;
+}
+.folder-tree .folder-tree-btn-group{
+    visibility: hidden;
+    display: inline-block;
+    height: 24px;
+    padding-left: 5px;
+    
+}  
+.folder-tree .folder-tree-btn-group i{
+    color:#000;
+    vertical-align: middle;
+}  
+.folder-tree .folder-tree-btn-group i:hover{
+    color:#ccc;
+}
+.folder-tree .folder-tree-pack{
+    padding-left: 20px;
+    height: 0px;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+}
+.folder-tree .folder-tree-pack-open{
+    height: auto;
+}
+
+
+@font-face {font-family: "iconfont";
+    src: url('iconfont.eot?t=1590738104329'); /* IE9 */
+    src: url('iconfont.eot?t=1590738104329#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAASUAAsAAAAACdwAAARFAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDRgqGQIUfATYCJAMcCxAABCAFhG0HYRtgCBFVnEfJvjiwmz2tzI6cE4v+2QLmKQbFpfc++P//67fPvXe+X8ChwcACiVoBZpZnknjLn+jAQ69T3xckMnz5FGCYUnCRWL5OsYtAI9EEDH7vnAM26oQayQpTP/J52U+4ocugAQII9K47gcT/H7gtgte+ilo/aMYRBVaA/XA/46V/sNWzb3PqaNp0PKABZV9rkN2BnPsNYzeRB/kyBNQkkIeoXbdxaww0wDYBGjygXw+MhAqtAhGGNKjgrIaYg46hVCoXmfHxfl+vuQoDDF0FvOrRt05vvM+Snn1W7f+2zqqNPZwBUC6BAycQoKGFpjdqEDpRcVqJGlWAEi5SIKU+6/3s8///AjGJs5VzBiYmYKho6Mv/5ykIIGp5wiucQ0rCKAxSMgqHlGIgOGQ2ryCzxb15FIL0Wcyh4orNPTCBBCiTI9xCQkNcxRw9PE5Ktzs0OJLY45xqmJw/aZE/rP+CAxk9vQ8vsMN7bL2TO2jx8kn+LWGKqcvF233bnG7/FjR7a7gnMUfovm3dFwYi+y3m0/xhvRfYPapS7a0uGdje3Ve6Ai2eN8lctM233eUJbLW3THKuu133ws0kp4D1FPTceDLaufx0j34NilvtiTGVaGFxLFJdtK13xhDY3k5hNhDYkXhSPUZ95iCqcJmjEuocH22nC8nSk+kupaNTtGm76JjTveFElObUeDafjlV9u1qbY75t0fwq6/aMDRv7O/pt81jjT5D/Lqyv489tppwQv3SRSpmSJC35wGuvPmPFWvK0aZlnpHXVvmpJTKvfwcqYpV7v0piSaGaIVvtWuaaaVhxVrWwViH7zCZRYnWte7W4wa5r8IcqVNVfK6tfxNq9Xp+yqrFTK9fyCLhVzvNHTs4tijw1ivHfmXjOF/De+Cuk5Gk2Ol2mDO95NxadlkRRSKLFWCGUQpSLamK4KkUCEuDqH+9Vtuq9xlq4BB7Pvj7XPjlq/9966sBFrSp12jsDrpa0Kc15ewUKZdFSujpmZCljp15QjcD3wHsojF6kpVtIe+XA1vlo5BeDd1R/tb/gmG9u7eap83bk0AP7f7h7xXNeDoBvrb2E3Zv9W7IZ9YXOButDM1ngtAgoaoMPryqbGCfxSMZi5N5xka5wJwiA8AiOYeHAM0jBByIMMF2WQY1AdanKpd7lBWExLWgXkWBzIaIPp/cCNDiYIDzK7D7mxJdSehTsbR/YQKwTjTfKnJtOkkJYPfvYNugdR41yP9EJt1ksMlI6OmFCHOGAffXVWpDVFStzrEEKiUZOD5GNlzgOiFn3TMac4O7irQGDwRsQfaaRkouhkdsj8/A1oXSDUiqYW/QtUjZ2dMEANMKNoatR0KYvNh3blmBI3qSqJSOINEGAoIaN4lQMSO6odAtkAhWHaVHScXhLv8xTgBD4hOJMrlClXoZLyBpMuHRuxYnJ21Zl+a4aEpOlbzy4Vu5Jkj5h4NgMAAAA=') format('woff2'),
+    url('iconfont.woff?t=1590738104329') format('woff'),
+    url('iconfont.ttf?t=1590738104329') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('iconfont.svg?t=1590738104329#iconfont') format('svg'); /* iOS 4.1- */
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-zhengque:before {
+    content: "\e664";
+  }
+  
+  .icon-bianji:before {
+    content: "\e620";
+  }
+  
+  .icon-jian:before {
+    content: "\e621";
+  }
+  
+  .icon-shanchu:before {
+    content: "\e622";
+  }
+  
+  .icon-tianjia:before {
+    content: "\e623";
+  }
+  
+  .icon-document:before {
+    content: "\e6f3";
+  }
+  
+  
+  
+  
