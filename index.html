@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>folder tree</title>
+        <link rel="stylesheet" href="src/folderTree.css">
+        <style>
+            #el {
+              width: 400px;
+              margin: 30px auto;
+            }
+            .btn-group{
+                text-align: center;
+            }
+            button{
+                border:none;
+                background-color: #009688;
+                border-radius: 4px;
+                padding: 10px;
+                margin-top: 20px;
+                color:#fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="btn-group">
+            <button onclick="getChecked()">获取已选中的数据</button>
+        </div>
+        <div id="el"></div>
+    </body>
+    
+    <script src="src/folderTree.js"></script>
+    <script>
+        var data = [{
+            title: '一级菜单 1'
+            ,id: 1
+            ,children:[{
+                title: '二级菜单 1-1'
+                ,id: 2
+                ,children:[{
+                    title: '二级菜单 1-1-1'
+                    ,id: 4
+                },{
+                    title: '二级菜单 1-1-2'
+                    ,id: 5
+                }]
+            }
+            ,{
+                title: '二级菜单 1-2'
+                ,id: 3
+            }]
+        }]
+        
+        var folderTree = new FolderTree({
+            el:"#el",       //绑定元素
+            data: data,     //数据
+            showCheckbox: true, //显示复选框
+           //点击title
+            click: function(obj){
+                console.log(obj)
+            },
+            //删除、编辑等操作
+            operate: function(obj){
+                console.log(obj)
+            },
+            //选中/取消选中
+            oncheck: function(obj){
+                console.log(obj)
+            }
+        }); 
+
+        var getChecked = function(){
+            var checked = folderTree.getChecked();
+            console.log(checked)
+            var arr = [];
+            for(let i = 0; i < checked.length; i++){
+                arr.push(checked[i].id)
+            }
+            alert(arr)
+        }
+        
+    </script>
+</html>

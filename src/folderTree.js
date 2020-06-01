@@ -157,7 +157,12 @@
                         }
                     }
                 }
-                updateCheckStatus(setNode,data)
+                updateCheckStatus(setNode,data);
+                options.oncheck({
+                    isChecked: !isChecked,
+                    data: data,
+                    elem: setNode
+                })
             })
         },
         //展开节点
@@ -207,6 +212,8 @@
                     if(type == 'del'){
                         returnObj.type = 'del';
                         setNode.parentNode.removeChild(setNode);
+                        //触发回调
+                        options.operate && options.operate(returnObj)
                     }
                     else if(type == 'edit'){
                         let editInput = setNode.querySelector('.'+EDIT_INPUT);
@@ -217,16 +224,20 @@
                         editInput.className = editInput.className.replace(/ folder-tree-none/g, '');
                         editInput.select();
                         let removeInput = function(e){
-                            editInput.className += " folder-tree-none";
-                            data.title = editInput.value;
-                            editTitle.innerHTML = editInput.value;
-                            editInput.removeEventListener('blur', removeInput)
+                            if(e.type === "blur" || (e.keyCode && e.keyCode === 13)){
+                                editInput.className += " folder-tree-none";
+                                data.title = editInput.value;
+                                editTitle.innerHTML = editInput.value;
+                                editInput.removeEventListener('blur', removeInput);
+                                //触发回调
+                                returnObj.data = data;
+                                options.operate && options.operate(returnObj)
+                            }
                         }
                         //添加失去焦点时的监听
-                        editInput.addEventListener('blur', removeInput)
+                        editInput.addEventListener('blur', removeInput);
+                        editInput.addEventListener('keyup', removeInput)
                     }
-                    //触发回调
-                    options.operate && options.operate(returnObj)
                 })
             }
         },
