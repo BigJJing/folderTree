@@ -7,8 +7,6 @@
 
     //字符常量
     var ICON_SPREAD = 'folder-tree-stretch-btn',
-        ICON_EDIT = 'folder-tree-edit-btn',
-        ICON_DELETE = 'folder-tree-delete-btn',
         ICON_CHECK = "icon-zhengque"
         OPERATE_OPTIONS = 'folder-tree-btn-group',
         ENTRY_VIEW = 'folder-tree-entry',
@@ -36,8 +34,6 @@
             this.tree(temp,config.data);
 
             el.appendChild(temp);
-            //开启监听
-            //this.openListenter();
         },
         //渲染文件树
         tree: function(parent,data){
@@ -100,13 +96,6 @@
             html += '<i data-type="del" class="folder-tree-delete-btn iconfont icon-shanchu"></i>';
             html += '</div></div></div>';
             node.innerHTML = html;
-            /*
-            //添加监听事件
-            let spreadIcon = node.querySelector('.' + ICON_SPREAD),
-                deleteIcon = node.querySelector('.' + ICON_DELETE),
-                editIcon = node.querySelector('.' + ICON_EDIT);
-            deleteIcon.addEventListener('click',that.deleteNode.bind(that))
-            */
             return node;
         },
         open: function(data, setNode){
@@ -280,39 +269,6 @@
                }
             }
             return object
-        },
-        /*
-        **监听事件
-        */
-        openListenter: function(){
-            var that = this;
-            let titles = window.document.querySelectorAll(".tree-title");
-            let editBtns = window.document.querySelectorAll(".folder-tree-edit-btn");
-            let deleteBtns = window.document.querySelectorAll(".folder-tree-delete-btn");
-            let stretchBtns = window.document.querySelectorAll(".folder-tree-stretch-btn");
-            //监听title
-            for(let i = 0; i < titles.length; i++){
-                titles[i].addEventListener('click',function(e){
-                    console.log(e.target.parentNode.dataset)
-                })
-            }
-            //监听展开子菜单
-            for(let i = 0; i < stretchBtns.length; i++){
-                stretchBtns[i].addEventListener('click',that.spread)
-            }
-        
-            //监听编辑folder事件
-            for(let i = 0; i < editBtns.length; i++){
-                editBtns[i].addEventListener('click',function(e){
-                    console.log(e.target.parentNode.parentNode.dataset)
-                })
-            }
-            /*
-            //监听删除folder事件
-            for(let i = 0; i < deleteBtns.length; i++){
-                deleteBtns[i].addEventListener('click',that.deleteNode.bind(that))
-            }
-            */
         }
     }
     window.FolderTree = FolderTree
