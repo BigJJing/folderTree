@@ -11,7 +11,7 @@
     color: #ccc;
 }
 .folder-tree .folder-tree-none{
-    display: none;
+    display: none !important;
 }
 .folder-tree .folder-tree-main{
     display: inline-block;
@@ -63,6 +63,10 @@
     text-align: center;
     line-height: 18px;
     margin-right: 5px;
+}
+.folder-tree .tree-form-checkbox-none{
+    width: 0;
+    visibility: hidden;
 }
 .tree-form-checkbox-checked{
     border-color: #5FB878 !important;

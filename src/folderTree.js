@@ -7,8 +7,9 @@
 
     //字符常量
     var ICON_SPREAD = 'folder-tree-stretch-btn',
-        ICON_CHECK = "icon-zhengque"
+        ICON_CHECK = "icon-zhengque",
         OPERATE_OPTIONS = 'folder-tree-btn-group',
+        FOLDER_VIEW = 'folder-tree',
         ENTRY_VIEW = 'folder-tree-entry',
         PACK_VIEW = 'folder-tree-pack',
         EDIT_INPUT = 'folder-tree-edit-input',
@@ -52,9 +53,7 @@
                 //添加title点击事件
                 that.open(data[i], node);
                 //添加复选框监听
-                if(that.config.showCheckbox){
-                    that.check(data[i], node);
-                }
+                that.check(data[i], node);
                 //添加节点展开监听
                 if(data[i].children && data[i].children.length > 0){
                     that.spread(data[i], node); 
@@ -87,6 +86,11 @@
                 html += '<i class="iconfont"></i>';
                 html += '</div>';
             }
+            else{
+                html += '<div class="tree-form-checkbox tree-form-checkbox-none">';
+                html += '<i class="iconfont"></i>';
+                html += '</div>';
+            }
             /*文件夹名 */
             html += '<span class="tree-title">' + data.title + '</span>';
             html += '<input type="text" value="'+ data.title +'" class="folder-tree-edit-input folder-tree-none">'
@@ -109,7 +113,8 @@
             })
         },
         check: function(data, setNode){
-            let options = this.config,
+            let that = this,
+                options = that.config,
                 checkbox = setNode.querySelector('.' + EDIT_CHECKBOX);
             checkbox.addEventListener('click',function(e){
                 let isChecked = false;   //该节点是否被选中
@@ -118,6 +123,7 @@
                     isChecked = true;
                 }   
                 //选中或取消选中所有的子节点
+                
                 var updateCheckStatus = function(setElem,data){
                     let checkElem = setElem.querySelector("." + EDIT_CHECKBOX);
                     let icon = checkElem.querySelector('i');
@@ -233,6 +239,56 @@
         //获取选中的节点
         getChecked: function(){
             return this.config.selected;
+        },
+        //开启复选框
+        showCheck: function(){
+            if(this.config.showCheckbox){
+                return false;
+            }
+            let checks = document.querySelectorAll('.tree-form-checkbox');
+            for(let i = 0; i < checks.length; i++){
+                checks[i].className = checks[i].className.replace(' tree-form-checkbox-none','')
+            }
+            this.config.showCheckbox = true;
+            
+        },
+        //关闭复选框
+        hideCheck: function(){
+            if(!this.config.showCheckbox){
+                return false;
+            }
+            let checks = document.querySelectorAll('.tree-form-checkbox');
+            for(let i = 0; i < checks.length; i++){
+                checks[i].className += ' tree-form-checkbox-none';
+            }
+            this.config.showCheckbox = false;
+            this.clearSelected();
+        },
+        //取消选中所有复选框
+        clearSelected: function(){
+            let config = this.config;
+            let container = document.querySelector(config.el).children[0];
+            let setNodes = container.children;
+            var updateCheckStatus = function(setNode){
+                let checkElem = setNode.querySelector("." + EDIT_CHECKBOX);
+                let icon = checkElem.querySelector('i');
+                //修改状态为unchecked
+                if(checkElem.className.indexOf(EDIT_CHECKBOX_CHECKED) !== -1){
+                    checkElem.className = checkElem.className.replace(" "+ EDIT_CHECKBOX_CHECKED,"");
+                    icon.className = icon.className.replace(" " + ICON_CHECK,"");
+                }
+                //判断是否有子元素
+                if(setNode && setNode.children.length > 1 && setNode.children[1].className.indexOf(PACK_VIEW) > -1){
+                    let nodes = setNode.children[1].children;
+                    for(let i = 0; i < nodes.length; i++){
+                        updateCheckStatus(nodes[i]);
+                    }
+                }
+            }
+            for(let i = 0; i < setNodes.length; i++){
+                updateCheckStatus(setNodes[i]);
+            }
+            config.selected = [];
         },
         /*
         ** 操作节点
