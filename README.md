@@ -150,6 +150,17 @@ children | 子节点 | Array | 与data相同
 <br>
 
 ***
+##### 可调用的方法
+
+方法|说明
+----|----
+getChecked|返回选中的数据
+showCheck|显示复选框
+hideCheck|隐藏复选框
+clearSelected|清除所有选中数据
+<br>
+
+***
 ##### 返回选中的数据
 获取通过复选框选中的节点
 ```
@@ -159,4 +170,43 @@ children | 子节点 | Array | 与data相同
             showCheckbox: true,  //显示复选框
        }); 
  var checked = folderTree.getChecked()
+```
+
+***
+##### 显示复选框
+将隐藏的复选框显示
+
+```
+ var folderTree = new FolderTree({
+            el:"#el",       //绑定元素
+            data: data,     //数据
+            showCheckbox: false,  //隐藏复选框
+       }); 
+ folderTree.showCheck()
+```
+
+***
+##### 隐藏复选框
+将显示的复选框隐藏
+
+```
+ var folderTree = new FolderTree({
+            el:"#el",       //绑定元素
+            data: data,     //数据
+            showCheckbox: true,  //显示复选框
+       }); 
+folderTree.hideCheck()
+```
+
+***
+##### 清除所有选中数据
+将已选中的复选框取消选中
+
+```
+ var folderTree = new FolderTree({
+            el:"#el",       //绑定元素
+            data: data,     //数据
+            showCheckbox: true,  //显示复选框
+       }); 
+folderTree.clearSelected()
 ```
